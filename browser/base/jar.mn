@@ -176,3 +176,12 @@ browser.jar:
 #endif
 
 % override chrome://global/content/netError.xhtml chrome://browser/content/aboutNetError.xhtml
+
+#ifdef MOZ_HTMLRUNNER
+htmlrunner.jar:
+%  content htmlrunner %content/
+
+*       content/shell.xul        (content/htmlrunner/shell.xul)
+*       content/shell.css        (content/htmlrunner/shell.css)
+        content/shell.js         (content/htmlrunner/shell.js)
+#endif

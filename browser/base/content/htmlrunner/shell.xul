@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://htmlrunner/content/shell.css" type="text/css"?>
+<?xul-overlay href="chrome://global/content/editMenuOverlay.xul"?>
+
+<window id="main-window"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  title="htmlrunner"
+#ifdef XP_MACOSX
+  chromemargin="0,-1,-1,-1"
+  tabsintitlebar="true"
+#endif
+  windowtype="navigator:browser"
+  screenX="4" screenY="4"
+  sizemode="normal"
+  persist="screenX screenY width height sizemode">
+
+  <script type="application/javascript" src="chrome://htmlrunner/content/shell.js"/>
+
+  <commandset>
+    <command id="cmd_appReload" oncommand="appReload()"/>
+    <command id="cmd_startDevtools" oncommand="startDevtools()"/>
+  </commandset>
+
+  <keyset>
+    <key phase="capturing" modifiers="accel,shift" command="cmd_appReload" key="R"/>
+    <key keycode="VK_F12" command="cmd_startDevtools"/>
+  </keyset>
+
+#ifdef XP_MACOSX
+  <vbox id="titlebar">
+    <hbox id="titlebar-content">
+      <hbox id="titlebar-buttonbox-container">
+        <hbox id="titlebar-buttonbox">
+          <toolbarbutton class="titlebar-button" id="titlebar-min"/>
+          <toolbarbutton class="titlebar-button" id="titlebar-max"/>
+          <toolbarbutton class="titlebar-button" id="titlebar-close"/>
+        </hbox>
+        <spacer id="titlebar-spacer" flex="1"/>
+      </hbox>
+    </hbox>
+  </vbox>
+#endif
+  <vbox id="core" flex="1">
+    <iframe flex="1" content="true" transparent="true"/>
+  </vbox>
+</window>
