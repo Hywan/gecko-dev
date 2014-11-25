@@ -41,6 +41,12 @@ iframe {
   font: -moz-field;
 }
 
+#init > description {
+%ifdef XP_UNIX
+  color: -moz-menubartext;
+%endif
+}
+
 #init > textbox {
   width: 300px;
 }
