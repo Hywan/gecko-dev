@@ -1860,7 +1860,6 @@ pref("network.dns.localDomains", "browser.gaiamobile.org");
 pref("devtools.webide.enableLocalRuntime", true);
 pref("htmlrunner.rootAppID", "browser.gaiamobile.org");
 pref("htmlrunner.rootAppManifest", "app://browser.gaiamobile.org/manifest.webapp");
-pref("htmlrunner.rootAppSource", "/Users/paul/github/firefox.html/");
 pref("dom.sysmsg.enabled", true);
 pref("devtools.chrome.enabled", true);
 pref("devtools.apps.forbidden-permissions", "");

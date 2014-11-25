@@ -21,6 +21,7 @@
   <commandset>
     <command id="cmd_appReload" oncommand="appReload()"/>
     <command id="cmd_startDevtools" oncommand="startDevtools()"/>
+    <command id="cmd_setAppCodePath" oncommand="setAppCodePath()"/>
   </commandset>
 
   <keyset>
@@ -42,7 +43,15 @@
     </hbox>
   </vbox>
 #endif
-  <vbox id="core" flex="1">
+  <vbox id="core" flex="1" hidden="true">
     <iframe flex="1" content="true" transparent="true"/>
+  </vbox>
+  <vbox id="init" hidden="true" align="start">
+    <description>Please select the location of the source code
+      of the app to run. If you want to run Firefox.html, source
+      code can be downloaded here:
+    </description>
+    <textbox value="http://github.com/paulrouget/firefox.html"></textbox>
+    <button label="Select Location" command="cmd_setAppCodePath"/>
   </vbox>
 </window>

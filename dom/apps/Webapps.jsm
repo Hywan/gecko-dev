@@ -609,6 +609,10 @@ this.DOMApplicationRegistry = {
   },
 
   installHTMLRunnerRootApp: Task.async(function*() {
+    if (!Services.prefs.prefHasUserValue("htmlrunner.rootAppSource")) {
+      return;
+    }
+
     let id = Services.prefs.getCharPref("htmlrunner.rootAppID");
 
     let zipWriter = Cc["@mozilla.org/zipwriter;1"].createInstance(Ci.nsIZipWriter);

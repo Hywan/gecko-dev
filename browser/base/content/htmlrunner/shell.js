@@ -9,8 +9,16 @@ const AppsService = Cc["@mozilla.org/AppsService;1"].getService(Ci.nsIAppsServic
 
 function onLoad() {
   window.removeEventListener("DOMContentLoaded", onLoad);
-  Services.obs.addObserver(LoadBrowserApp, "htmlrunner-rootapp-installed", false);
-  LoadBrowserApp();
+
+  if (Services.prefs.prefHasUserValue("htmlrunner.rootAppSource")) {
+    document.querySelector("#core").removeAttribute("hidden");
+    document.querySelector("#init").setAttribute("hidden", "true");
+    Services.obs.addObserver(LoadBrowserApp, "htmlrunner-rootapp-installed", false);
+    LoadBrowserApp();
+  } else {
+    document.querySelector("#init").removeAttribute("hidden");
+    document.querySelector("#core").setAttribute("hidden", "true");
+  }
 }
 
 window.addEventListener("DOMContentLoaded", onLoad);
@@ -42,6 +50,17 @@ function appReload() {
   // Fake first run, which will trigger re-installation of Firefox.html.
   Services.prefs.clearUserPref("gecko.mstone");
   DOMApplicationRegistry.loadAndUpdateApps();
+}
+
+function setAppCodePath() {
+  let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+  fp.init(window, "Select App Path", Ci.nsIFilePicker.modeGetFolder);
+  let rv = fp.show();
+  if (rv == Ci.nsIFilePicker.returnOK) {
+    Services.prefs.setCharPref("htmlrunner.rootAppSource", fp.file.path);
+    onLoad();
+    appReload();
+  }
 }
 
 function startDevtools() {

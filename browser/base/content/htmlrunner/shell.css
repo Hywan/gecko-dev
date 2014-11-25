@@ -35,3 +35,12 @@ iframe {
   -moz-box-flex: 1;
   border-width: 0;
 }
+
+#init {
+  padding: 100px 40px 0;
+  font: -moz-field;
+}
+
+#init > textbox {
+  width: 300px;
+}
