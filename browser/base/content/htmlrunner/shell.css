@@ -18,7 +18,7 @@ window {
 
 }
 
-%ifndef XP_UNIX
+%ifdef XP_MACOSX
 #titlebar {
   -moz-binding: url("chrome://global/content/bindings/general.xml#windowdragbox");
   -moz-window-dragging: drag;
