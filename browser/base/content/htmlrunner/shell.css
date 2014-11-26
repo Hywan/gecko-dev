@@ -1,20 +1,28 @@
 window {
   min-width: 300px;
   min-height: 300px;
-%ifdef XP_MACOSX
-  -moz-window-dragging: drag;
-  -moz-appearance: -moz-mac-vibrancy-light;
-%endif
-%ifndef XP_MACOSX
+
+%ifdef XP_UNIX
   -moz-appearance: menubar;
 %endif
-}
 
 %ifdef XP_MACOSX
+  -moz-appearance: -moz-mac-vibrancy-light;
+  -moz-window-dragging: drag;
+%endif
+
+%ifdef XP_WIN
+  -moz-appearance: menubar;
+  -moz-window-dragging: drag;
+%endif
+
+}
+
+%ifndef XP_UNIX
 #titlebar {
   -moz-binding: url("chrome://global/content/bindings/general.xml#windowdragbox");
   -moz-window-dragging: drag;
-  /* FIXME: remove this line if we want vibrancy all over the window */
+  /* FIXME: remove this line if we want vibrancy all over the window on osx */
   -moz-appearance: -moz-window-titlebar;
   margin-bottom: -30px;
   min-height:  39px;
