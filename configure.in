@@ -6391,6 +6391,16 @@ dnl HTMLRunner
 dnl ========================================================
 if test -n "$MOZ_HTMLRUNNER" ; then
     AC_DEFINE(MOZ_HTMLRUNNER)
+
+  REAL_BRANDING_DIRECTORY=${MOZ_BUILD_APP}/branding/htmlrunner
+
+  if test -f "${_topsrcdir}/$REAL_BRANDING_DIRECTORY/configure.sh"; then
+    . "${_topsrcdir}/$REAL_BRANDING_DIRECTORY/configure.sh"
+  elif test -f "${EXTERNAL_SOURCE_DIR}/$REAL_BRANDING_DIRECTORY/configure.sh"; then
+    . "${EXTERNAL_SOURCE_DIR}/$REAL_BRANDING_DIRECTORY/configure.sh"
+  fi
+
+  AC_SUBST(MOZ_BRANDING_DIRECTORY)
 fi
 
 dnl ========================================================

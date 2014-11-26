@@ -5,6 +5,8 @@ const Cc = Components.classes;
 Cu.import('resource://gre/modules/Services.jsm');
 Cu.import("resource://gre/modules/Webapps.jsm");
 
+const FORCE_APP_RELOAD_AT_STARTUP = true;
+
 const AppsService = Cc["@mozilla.org/AppsService;1"].getService(Ci.nsIAppsService);
 
 function onLoad() {
@@ -14,7 +16,13 @@ function onLoad() {
     document.querySelector("#core").removeAttribute("hidden");
     document.querySelector("#init").setAttribute("hidden", "true");
     Services.obs.addObserver(LoadBrowserApp, "htmlrunner-rootapp-installed", false);
-    LoadBrowserApp();
+
+    if (FORCE_APP_RELOAD_AT_STARTUP) {
+      appReload();
+    } else {
+      LoadBrowserApp();
+    }
+
   } else {
     document.querySelector("#init").removeAttribute("hidden");
     document.querySelector("#core").setAttribute("hidden", "true");
@@ -58,8 +66,10 @@ function setAppCodePath() {
   let rv = fp.show();
   if (rv == Ci.nsIFilePicker.returnOK) {
     Services.prefs.setCharPref("htmlrunner.rootAppSource", fp.file.path);
+    if (!FORCE_APP_RELOAD_AT_STARTUP) {
+      appReload();
+    }
     onLoad();
-    appReload();
   }
 }
 

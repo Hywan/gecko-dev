@@ -1,5 +1,5 @@
 window {
-  min-width: 500px;
+  min-width: 300px;
   min-height: 300px;
 %ifdef XP_MACOSX
   -moz-window-dragging: drag;
@@ -37,16 +37,13 @@ iframe {
 }
 
 #init {
-  padding: 100px 40px 0;
+  margin: 40px;;
+  padding: 40px;
   font: -moz-field;
+  color: black;
+  background-color: white;
 }
 
-#init > description {
-%ifdef XP_UNIX
-  color: -moz-menubartext;
-%endif
-}
-
-#init > textbox {
-  width: 300px;
+#init input {
+  width: 100%;
 }

@@ -5,7 +5,6 @@
 
 <window id="main-window"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  xmlns:html="http://www.w3.org/1999/xhtml"
   title="htmlrunner"
 #ifdef XP_MACOSX
   chromemargin="0,-1,-1,-1"
@@ -14,6 +13,7 @@
   windowtype="navigator:browser"
   screenX="4" screenY="4"
   sizemode="normal"
+  width="500" height="500"
   persist="screenX screenY width height sizemode">
 
   <script type="application/javascript" src="chrome://htmlrunner/content/shell.js"/>
@@ -46,12 +46,24 @@
   <vbox id="core" flex="1" hidden="true">
     <iframe flex="1" content="true" transparent="true"/>
   </vbox>
-  <vbox id="init" hidden="true" align="start">
-    <description>Please select the location of the source code
-      of the app to run. If you want to run Firefox.html, source
-      code can be downloaded here:
-    </description>
-    <textbox value="http://github.com/paulrouget/firefox.html"></textbox>
-    <button label="Select Location" command="cmd_setAppCodePath"/>
+  <vbox>
+    <div id="init" hidden="true" xmlns="http://www.w3.org/1999/xhtml">
+      <p>Select the location of the source code
+        of the app to run.</p>
+      <p>
+        <button onclick="setAppCodePath()">Select Location</button>
+      </p>
+      <p> If you want to run Firefox.html, source code can be downloaded here:
+        <input value="http://github.com/paulrouget/firefox.html"></input>
+      </p>
+      <p>
+        Note:
+        <ul>
+          <li>This configuration step is only required once. Next startup will directly load the app.</li>
+          <li><strong>F12</strong> will start the devtools connected to the very top level window (this one). Better devtools to come soon.</li>
+          <li><strong>Ctrl/Cmd+Shit+R</strong> will reload the *whole* app (then you don't have to restart on every code change).</li>
+        </ul>
+      </p>
+    </div>
   </vbox>
 </window>
