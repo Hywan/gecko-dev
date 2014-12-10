@@ -7,7 +7,6 @@ window {
 %endif
 
 %ifdef XP_MACOSX
-  -moz-appearance: -moz-mac-vibrancy-light;
   -moz-window-dragging: drag;
 %endif
 
@@ -16,6 +15,14 @@ window {
 %endif
 }
 
+%ifdef XP_MACOSX
+@media (-moz-mac-yosemite-theme) {
+  window {
+    -moz-appearance: -moz-mac-vibrancy-light;
+  }
+}
+%endif
+
 %ifdef CAN_DRAW_IN_TITLEBAR
 #titlebar {
   -moz-binding: url("chrome://global/content/bindings/general.xml#windowdragbox");
@@ -23,7 +30,7 @@ window {
   /* FIXME: remove this line if we want vibrancy all over the window on osx */
   -moz-appearance: -moz-window-titlebar;
 %ifdef XP_MACOSX
-  margin-bottom: -30px;
+  margin-bottom: -39px;
   min-height:  39px;
 %endif
 %ifdef XP_WIN
@@ -32,12 +39,17 @@ window {
 }
 
 #titlebar-buttonbox {
+%ifdef XP_MACOSX
+  margin-top: 11px;
+%endif
   -moz-appearance: -moz-window-button-box;
 }
 
+%ifdef XP_WIN
 #titlebar-buttonbox-container {
   -moz-box-direction: reverse;
 }
+%endif
 
 #titlebar-spacer {
   pointer-events: none;
