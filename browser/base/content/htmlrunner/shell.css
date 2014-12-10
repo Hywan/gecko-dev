@@ -16,6 +16,9 @@ window {
 }
 
 %ifdef XP_MACOSX
+window {
+  -moz-appearance: dialog;
+}
 @media (-moz-mac-yosemite-theme) {
   window {
     -moz-appearance: -moz-mac-vibrancy-light;
