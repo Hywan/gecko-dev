@@ -668,6 +668,12 @@
 @RESPATH@/browser/chrome/webide.manifest
 @RESPATH@/browser/@PREF_DIR@/webide-prefs.js
 
+; [HTLM Runner Files]
+#ifdef MOZ_HTMLRUNNER
+@RESPATH@/browser/chrome/htmlrunner@JAREXT@
+@RESPATH@/browser/chrome/htmlrunner.manifest
+#endif
+
 ; shell icons
 #ifdef XP_UNIX
 #ifndef XP_MACOSX

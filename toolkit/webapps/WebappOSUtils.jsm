@@ -179,6 +179,10 @@ this.WebappOSUtils = {
    // All fennec
     return aApp.basePath + "/" + aApp.id;
 
+#elifdef MOZ_HTMLRUNNER
+   // HTMLRunner
+    return aApp.basePath + "/" + aApp.id;
+
 #elifdef MOZ_PHOENIX
    // Firefox
 
@@ -233,8 +237,10 @@ this.WebappOSUtils = {
 
     // Only for Firefox on Mac OS X
 #ifndef MOZ_B2G
+#ifndef MOZ_HTMLRUNNER
 #ifdef XP_MACOSX
     packagePath = OS.Path.join(packagePath, "Contents", "Resources");
+#endif
 #endif
 #endif
 
@@ -416,6 +422,10 @@ this.WebappOSUtils = {
     }
 
     return true;
+#elifdef MOZ_HTMLRUNNER
+
+    return true;
+
 #elifdef XP_UNIX
     let env = Cc["@mozilla.org/process/environment;1"]
                 .getService(Ci.nsIEnvironment);

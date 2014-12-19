@@ -6385,6 +6385,16 @@ AC_CHECK_PROGS(WGET, wget, "")
 AC_SUBST(WGET)
 
 dnl ========================================================
+dnl HTMLRunner
+dnl ========================================================
+if test -n "$MOZ_HTMLRUNNER" ; then
+    MOZ_PROFILE_MIGRATOR=
+    MOZ_APP_PROFILE=Firefox.html
+    AC_SUBST(MOZ_APP_PROFILE)
+    AC_DEFINE(MOZ_HTMLRUNNER)
+fi
+
+dnl ========================================================
 dnl Signing
 dnl ========================================================
 

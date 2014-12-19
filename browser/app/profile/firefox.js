@@ -1849,3 +1849,22 @@ pref("extensions.interposition.enabled", true);
 #endif
 
 pref("browser.defaultbrowser.notificationbar", false);
+
+#ifdef MOZ_HTMLRUNNER
+pref("browser.tabs.remote.autostart", true);
+pref("browser.chromeURL", "chrome://htmlrunner/content/shell.xul");
+pref("dom.webcomponents.enabled", true);
+pref("browser.dom.window.dump.enabled", true);
+pref("dom.mozBrowserFramesEnabled", true);
+pref("dom.ipc.processCount", 100000);
+pref("dom.webapps.useCurrentProfile", true);
+pref("security.apps.certified.CSP.default", "default-src *; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline' app://browser.gaiamobile.org");
+pref("network.dns.localDomains", "browser.gaiamobile.org");
+pref("devtools.webide.enableLocalRuntime", true);
+pref("htmlrunner.rootAppID", "browser.gaiamobile.org");
+pref("htmlrunner.rootAppManifest", "app://browser.gaiamobile.org/manifest.webapp");
+pref("dom.sysmsg.enabled", true);
+pref("devtools.chrome.enabled", true);
+pref("devtools.apps.forbidden-permissions", "");
+pref("devtools.debugger.forbid-certified-apps", false);
+#endif
